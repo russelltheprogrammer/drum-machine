@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+
 #app {
     text-align: center;
 }
@@ -5,6 +8,7 @@
 body {
     text-align: center;
     background-color: rgba(223, 210, 32, 0.623);
+    font-family: 'Roboto Mono', monospace;
   }
 
 #header {
@@ -12,13 +16,13 @@ body {
     color: black; 
     text-align: center;
     font-weight: bold;
-    margin-bottom: 250px;
+    margin-bottom: 170px;
   }
 
 #drum-machine {
     width: 40%;
     margin: auto;
-    border-color: teal;
+    border-color: black;
     border-width: 10px;
     border-style: solid;
     padding: 10px;
@@ -31,7 +35,7 @@ body {
     border-width: 5px;
     border-style: solid;
     padding: 25px;
-    background-color: orange;
+    background-color: rgb(220,20,60);
 }
 
 #display {
@@ -44,7 +48,34 @@ body {
 
 .col-5 {
     @extend .col;
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    padding: 25px 35px;
 }
+
+.drum-pad {
+    text-align: center;
+    display: inline-block;
+    font-size: 25px;
+    font-weight: bold;
+    padding: 25px 35px;
+    border-style: ridge;
+    border-color: black;
+    border-width: 2px;
+    border-radius: 10px;
+    background-color: aquamarine;
+    z-index: 1;
+    transition: ease-out 0.4s;
+}
+
+.drum-pad:hover {
+    background-color: royalblue;
+    cursor: pointer;
+}
+
+
+
 
 .footer {
     position: absolute;
