@@ -1,8 +1,9 @@
 import './index.scss'
 import React from 'react';
 
-const playAudio = (url) => {
-    new Audio(url).play();
+const playAudio = () => {
+       const sound = document.getElementsByClassName("clip")[0];
+       sound.play();
 }
 
 
@@ -13,9 +14,13 @@ const DrumMachine = () => {
             <div className="row">
                 <div className="col">
                     <div id="audio-1" className="drum-pad">
-                        <button onClick={playAudio()}>Q </button>
-                        <audio id="Q" className="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3"></audio>
-                        </div>
+                        <button className="drum-button" onClick={playAudio}>
+                            <span>Q</span>
+                        </button>
+                        <audio id="Q" className="clip">
+                            <source src="https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3"></source>
+                        </audio>
+                    </div>
                 </div>
                 <div className="col">
                 <div id="audio-2" className="drum-pad">W</div>

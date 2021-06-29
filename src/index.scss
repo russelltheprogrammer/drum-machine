@@ -54,7 +54,26 @@ body {
     padding: 25px 35px;
 }
 
-.drum-pad {
+// .drum-pad {
+//     text-align: center;
+//     display: inline-block;
+//     font-size: 25px;
+//     font-weight: bold;
+//     padding: 25px 35px;
+//     border-style: ridge;
+//     border-color: black;
+//     border-width: 2.5px;
+//     border-radius: 10px;
+//     background-color: aquamarine;
+//     transition: ease-out 0.4s;
+// }
+
+// .drum-pad:hover {
+//     background-color: royalblue;
+//     cursor: pointer;
+// }
+
+.drum-button {
     text-align: center;
     display: inline-block;
     font-size: 25px;
@@ -68,10 +87,11 @@ body {
     transition: ease-out 0.4s;
 }
 
-.drum-pad:hover {
+.drum-button:hover {
     background-color: royalblue;
     cursor: pointer;
 }
+
 
 
 
