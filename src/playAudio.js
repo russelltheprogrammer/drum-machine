@@ -16,8 +16,7 @@ return (
                         <button className="drum-button" onClick={playAudioClip}>
                             <span>{letter}</span>
                         </button>
-                        <audio id={letter} className="clip" preload="preload">
-                            <source src={url}></source>
+                        <audio id={letter} className="clip" src={url} preload="preload">
                         </audio>
                     </div>
 )
