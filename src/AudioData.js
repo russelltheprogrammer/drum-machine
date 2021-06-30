@@ -13,14 +13,14 @@ const AudioData = [
 },
 {
     keyTrigger: 'E',
-    id: 'stones-and-water',
-    url: 'https://actions.google.com/sounds/v1/impacts/stones_and_water_on_cement.ogg',
+    id: 'emergency-siren-short-burst',
+    url: 'https://actions.google.com/sounds/v1/emergency/emergency_siren_short_burst.ogg',
     keyCode: 69
 },
 {
     keyTrigger: 'A',
-    id: 'male-chuckling',
-    url: 'https://actions.google.com/sounds/v1/human_voices/male_chuckling.ogg',
+    id: 'metal-bat-hits-baseball',
+    url: 'https://actions.google.com/sounds/v1/sports/metal_bat_hits_baseball.ogg',
     keyCode: 65
 },
 {
@@ -43,8 +43,8 @@ const AudioData = [
 },
 {
     keyTrigger: 'X',
-    id: 'cupboard-door',
-    url: 'https://actions.google.com/sounds/v1/doors/cupboard_door.ogg',
+    id: 'drill-gear',
+    url: 'https://actions.google.com/sounds/v1/tools/drill_gear.ogg',
     keyCode: 88
 },
 {

@@ -1,9 +1,26 @@
+import './index.scss';
+import React from 'react';
 
-const playAudio = () => {
-    const sound = document.getElementsByClassName("clip")[0];
+const PlayAudio = ({ audioId, letter, url, index }) => {
+
+
+const playAudioClip = () => {
+    const sound = document.getElementsByClassName("clip")[index];
     sound.currentTime = 0;
     sound.play();
 }
 
- 
-export default playAudio;
+
+return (
+<div id={audioId} className="drum-pad">
+                        <button className="drum-button" onClick={playAudioClip}>
+                            <span>{letter}</span>
+                        </button>
+                        <audio id={letter} className="clip" preload="preload">
+                            <source src={url}></source>
+                        </audio>
+                    </div>
+)
+}
+
+export default PlayAudio;

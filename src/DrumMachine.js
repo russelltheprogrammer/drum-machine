@@ -1,31 +1,35 @@
 import './index.scss'
 import React from 'react';
-import playAudio from './playAudio';
+import PlayAudio from './PlayAudio';
+import AudioData from './AudioData';
+
 
 
 const DrumMachine = () => {
 
+  
 
+const passAudioData = (index) => {
+return (
+    <PlayAudio audioId={AudioData[index]["id"]} letter={AudioData[index]["keyTrigger"]} url={AudioData[index]["url"]} index={index} />
+)
+}
 
     return ( 
         <div id="drum-machine">
         <div id="inner-drum-machine-box">
             <div className="row">
                 <div className="col">
-                    <div id="crash" className="drum-pad">
-                        <button className="drum-button" onClick={playAudio}>
-                            <span>Q</span>
-                        </button>
-                        <audio id="Q" className="clip" preload="preload">
-                            <source src="https://actions.google.com/sounds/v1/impacts/crash.ogg"></source>
-                        </audio>
-                    </div>
+                    {/* Q */}
+                    {passAudioData(0)} 
                 </div>
                 <div className="col">
-                <div id="audio-2" className="drum-pad">W</div>
+                    {/* W */}
+                {passAudioData(1)}
                 </div>
                 <div className="col">
-                <div id="audio-3" className="drum-pad">E</div>
+                    {/* E */}
+                {passAudioData(2)}
                 </div>
                 <div className="col-5">
                     TOP ROW OPEN SPACE
@@ -33,13 +37,16 @@ const DrumMachine = () => {
             </div>
             <div className="row">
                 <div className="col">
-                <div id="audio-4" className="drum-pad">A</div>
+                    {/* A */}
+                {passAudioData(3)}
                 </div>
                 <div className="col">
-                <div id="audio-5" className="drum-pad">S</div>
+                    {/* S */}
+                {passAudioData(4)}
                 </div>
                 <div className="col">
-                <div id="audio-6" className="drum-pad">D</div>
+                    {/* D */}
+                {passAudioData(5)}
                 </div>
                 <div id="display" className="col-5">
                     DISPLAY
@@ -47,13 +54,16 @@ const DrumMachine = () => {
             </div>
             <div className="row">
                 <div className="col">
-                <div id="audio-7" className="drum-pad">Z</div>
+                    {/* Z */}
+                    {passAudioData(6)}
                 </div>
                 <div className="col">
-                <div id="audio-8" className="drum-pad">X</div>
+                    {/* X */}
+                    {passAudioData(7)}
                 </div>
                 <div className="col">
-                <div id="audio-9" className="drum-pad">C</div>
+                    {/* C */}
+                    {passAudioData(8)}
                 </div>
                 <div className="col-5">
                 BOTTOM ROW OPEN SPACE
