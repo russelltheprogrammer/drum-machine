@@ -1,24 +1,23 @@
 import './index.scss'
 import React from 'react';
-
-const playAudio = () => {
-       const sound = document.getElementsByClassName("clip")[0];
-       sound.play();
-}
+import playAudio from './playAudio';
 
 
 const DrumMachine = () => {
+
+
+
     return ( 
         <div id="drum-machine">
         <div id="inner-drum-machine-box">
             <div className="row">
                 <div className="col">
-                    <div id="audio-1" className="drum-pad">
+                    <div id="crash" className="drum-pad">
                         <button className="drum-button" onClick={playAudio}>
                             <span>Q</span>
                         </button>
-                        <audio id="Q" className="clip">
-                            <source src="https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3"></source>
+                        <audio id="Q" className="clip" preload="preload">
+                            <source src="https://actions.google.com/sounds/v1/impacts/crash.ogg"></source>
                         </audio>
                     </div>
                 </div>

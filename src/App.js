@@ -1,13 +1,13 @@
 import './index.scss';
 import React from 'react';
-import Controller from './Controller';
+import DrumMachine from './DrumMachine';
 
 function App() {
   return (
     <div id="app">
      <header id="header">Drum Machine</header>
 
-    <Controller />
+    <DrumMachine />
 
     <footer className="footer">
         Coded By <a 

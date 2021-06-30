@@ -1,53 +1,58 @@
 const AudioData = [
 {
     keyTrigger: 'Q',
-    id: 'audio-1',
-    url: ''
+    id: 'crash',
+    url: 'https://actions.google.com/sounds/v1/impacts/crash.ogg',
+    keyCode: 81
 },
 {
     keyTrigger: 'W',
-    id: 'audio-2',
-    url: ''
+    id: 'dumpster-bottle-smash',
+    url: 'https://actions.google.com/sounds/v1/impacts/dumpster_bottle_smash.ogg',
+    keyCode: 87
 },
 {
     keyTrigger: 'E',
-    id: 'audio-3',
-    url: ''
+    id: 'stones-and-water',
+    url: 'https://actions.google.com/sounds/v1/impacts/stones_and_water_on_cement.ogg',
+    keyCode: 69
 },
 {
     keyTrigger: 'A',
-    id: 'audio-4',
-    url: ''
+    id: 'male-chuckling',
+    url: 'https://actions.google.com/sounds/v1/human_voices/male_chuckling.ogg',
+    keyCode: 65
 },
 {
     keyTrigger: 'S',
-    id: 'audio-5',
-    url: ''
+    id: 'boing',
+    url: 'https://actions.google.com/sounds/v1/cartoon/cartoon_boing.ogg',
+    keyCode: 83
 },
 {
     keyTrigger: 'D',
-    id: 'audio-6',
-    url: ''
+    id: 'cowbell',
+    url: 'https://actions.google.com/sounds/v1/cartoon/cartoon_cowbell.ogg',
+    keyCode: 68
 },
 {
     keyTrigger: 'Z',
-    id: 'audio-7',
-    url: ''
+    id: 'clang-and-wobble',
+    url: 'https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg',
+    keyCode: 90
 },
 {
     keyTrigger: 'X',
-    id: 'audio-8',
-    url: ''
+    id: 'cupboard-door',
+    url: 'https://actions.google.com/sounds/v1/doors/cupboard_door.ogg',
+    keyCode: 88
 },
 {
     keyTrigger: 'C',
-    id: 'audio-9',
-    url: ''
+    id: 'wood-rattle',
+    url: 'https://actions.google.com/sounds/v1/doors/wood_rattle.ogg',
+    keyCode: 67
 },
 ]
 
-
-
-
- 
 export default AudioData;
