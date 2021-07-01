@@ -3,9 +3,7 @@ import React from 'react';
 import passAudioData from './passAudioData'
 
 
-
 const DrumMachine = () => {
-
 
     return ( 
         <div id="drum-machine">
@@ -14,8 +12,6 @@ const DrumMachine = () => {
                 <div className="col">
                     {/* Q */}
                     {passAudioData('crash')}
-                    
-                    
                 </div>
                 <div className="col">
                     {/* W */}

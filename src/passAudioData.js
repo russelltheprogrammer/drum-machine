@@ -12,11 +12,14 @@ const passAudioData = (idAudio) => {
         index = AudioData.indexOf(AudioData[i]);
 
 return (
-    <PlayAudio audioId={AudioData[index]["id"]} letter={AudioData[index]["keyTrigger"]} url={AudioData[index]["url"]} index={index} />
-
+    <div>
+    <PlayAudio audioId={AudioData[index]["id"]} letter={AudioData[index]["keyTrigger"]} url={AudioData[index]["url"]} 
+    index={index} keyCode={AudioData[index]["keyCode"]} />
+    </div>
 )
-}
+    }
     }
 }
+    
  
 export default passAudioData;
