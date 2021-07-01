@@ -9,41 +9,22 @@ const playAudioClip = () => {
     sound.play();
 }
 
-const KeyClick = (keyCode) => {
-    const [keyPressed, setKeyPressed ] = useState(false)
-
-    const downHandler = ({ key }) => {
-        if(key === keyCode){
-            setKeyPressed(true)
-        }
+const keyClick = (e) => {
+    if(e.keyCode === keyCode){
+        playAudioClip();
     }
-    const upHandler = ({ key }) => {
-        if (key === keyCode){
-            setKeyPressed(false)
-        }
-    }
-    useEffect(() => {
-        document.addEventListener('keydown', downHandler);
-        document.addEventListener('keyup', upHandler);
-        return () => {
-        document.removeEventListener('keydown', downHandler);
-        document.removeEventListener('keyup', upHandler);
-        }
-        }, [ downHandler, upHandler ])
-    return keyPressed
 }
 
-// const keyClick = (e) => {
-//     if(e.keyCode === keyCode){
-//     playAudioClip();
-//     console.log("you pressed a key!")
-//     }
-// }
-
+useEffect(() => {
+    document.addEventListener('keydown', keyClick)
+    return () => {
+        document.removeEventListener('keydown', keyClick)
+    }
+})
 
 
 return (
-    <div id={audioId} className="drum-pad" onClick={playAudioClip} onKeyPress={KeyClick(keyCode) ? 'pressed' : null}>
+    <div id={audioId} className="drum-pad" onClick={playAudioClip}>
         <span>{letter}</span>
         <audio id={letter} className="clip" src={url} preload="preload"></audio>
     </div>
