@@ -3,10 +3,13 @@ import React, { useState, useEffect } from 'react';
 
 const PlayAudio = ({ audioId, letter, url, index, keyCode }) => {
 
+    const [display, setDisplay] = useState("");
+
 const playAudioClip = () => {
     const sound = document.getElementsByClassName("clip")[index];
     sound.currentTime = 0;
     sound.play();
+    setDisplay(audioId);
 }
 
 const keyClick = (e) => {
@@ -22,11 +25,15 @@ useEffect(() => {
     }
 })
 
-
 return (
+    <div>
     <div id={audioId} className="drum-pad" onClick={playAudioClip}>
         <span>{letter}</span>
         <audio id={letter} className="clip" src={url} preload="preload"></audio>
+    </div>
+    <div>
+    {display}
+    </div>
     </div>
 )
 }

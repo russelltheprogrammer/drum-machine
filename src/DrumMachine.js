@@ -2,7 +2,6 @@ import './index.scss'
 import React from 'react';
 import passAudioData from './passAudioData'
 
-
 const DrumMachine = () => {
 
     return ( 
@@ -39,7 +38,9 @@ const DrumMachine = () => {
                 {passAudioData('helicopter-by')}
                 </div>
                 <div id="display" className="col-5">
+                    <div id="display-container">
                     DISPLAY
+                    </div>
                 </div>
             </div>
             <div className="row">

@@ -4,7 +4,6 @@ import PlayAudio from './PlayAudio';
 import AudioData from './AudioData';
 
 
-
 const passAudioData = (idAudio) => {
     for(let i = 0; i < AudioData.length; i++){
         let index = 0;
@@ -21,5 +20,4 @@ return (
     }
 }
     
- 
 export default passAudioData;
