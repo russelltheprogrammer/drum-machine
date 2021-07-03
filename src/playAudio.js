@@ -25,6 +25,15 @@ useEffect(() => {
     }
 })
 
+
+
+// useEffect(() => {
+//     document.addEventListener(, playAudioClip)
+//     return () => {
+//         document.removeEventListener(, playAudioClip)
+//     }
+// })
+
 return (
     <div>
     <div id={audioId} className="drum-pad" onClick={playAudioClip}>
