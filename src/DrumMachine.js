@@ -11,44 +11,95 @@ const DrumMachine = () => {
     const [letter, setLetter] = useState(null);
     const [url, setUrl] = useState(null);
     const [keyCode, setKeyCode] = useState(null);
-    const [index, setIndex] = useState(0);
     const [power, setPower] = useState(true);
 
-    const getAudioData = (idAudio) => {
+
+    const getAudioData = (audioId) => {
         for(let i = 0; i < AudioData.length; i++){
             let index = 0;
-        if(idAudio === AudioData[i]["id"]) {
+        if(audioId === AudioData[i]["id"]) {
             index = AudioData.indexOf(AudioData[i]);
-        }
-    }
-}
+            setDisplay(AudioData[index]["id"]);
+            setAudioId(AudioData[index]["id"]);
+            setLetter(AudioData[index]["keyTrigger"]);
+            setUrl(AudioData[index]["url"]);
+            }
+         }
+            }
+    
+    const defaultLetterCheck = (defaultLetter) => letter === defaultLetter ? letter : defaultLetter;
 
-const playAudioClip = (index) => {
+
+    const playAudioClip = (index) => {
     const sound = document.getElementsByClassName("clip")[index];
     sound.currentTime = 0;
     sound.play();
 }
 
-const keyClick = (e) => {
-    if(e.keyCode === keyCode){
-        playAudioClip();
-    }
-}
+// const keyClick = (e) => {
+//     if(e.keyCode === keyCode){
+//         playAudioClip();
+//     }
+// }
 
-useEffect(() => {
-    document.addEventListener('keydown', keyClick)
-    return () => {
-        document.removeEventListener('keydown', keyClick)
-    }
-})
+// useEffect(() => {
+//     document.addEventListener('keydown', keyClick)
+//     return () => {
+//         document.removeEventListener('keydown', keyClick)
+//     }
+// })
+
+// const handleClick = (audioId) => {
+//     getAudioData(audioId)
+// }
 
     return ( 
-            <div id="drum-machine">
-       <div id="inner-drum-machine-box">
-            <AudioButton />
-            <Display />
-       </div>
-       </div>
+        <div id="drum-machine">
+            <div id="inner-drum-machine-box">
+                 <div className="row">
+                    <div className="col" onClick={() => getAudioData('crash')}>
+                        <AudioButton audioId={audioId} letter={defaultLetterCheck("Q")} />
+                    </div> 
+                    <div className="col" onClick={() => getAudioData('dumpster-bottle-smash')}>
+                        <AudioButton audioId={audioId} letter={defaultLetterCheck("W")} url={url} />
+                    </div> 
+                    <div className="col" onClick={() => getAudioData('air-woosh-underwater')}>
+                         <AudioButton audioId={audioId} letter={defaultLetterCheck("E")} url={url} />
+                    </div> 
+                    <div className="col-5">
+                         POWER BUTTON
+                    </div> 
+                 </div> 
+                 <div className="row">
+                    <div className="col" onClick={() => getAudioData('metal-bat-hits-baseball')}>
+                        <AudioButton audioId={audioId} letter={defaultLetterCheck("A")} />
+                     </div> 
+                     <div className="col" onClick={() => getAudioData('wood-rattle')}>
+                        <AudioButton audioId={audioId} letter={defaultLetterCheck("S")} />
+                    </div>
+                    <div className="col" onClick={() => getAudioData('helicopter-by')}>
+                         <AudioButton audioId={audioId} letter={defaultLetterCheck("D")} />
+                    </div>
+                    <div className="col-5">
+                         <Display display ={display}/>
+                    </div>
+                </div>
+                    <div className="row">
+                    <div className="col" onClick={() => getAudioData('boing')}>
+                        <AudioButton audioId={audioId} letter={defaultLetterCheck("Z")} />
+                     </div> 
+                     <div className="col" onClick={() => getAudioData('emergency-siren-short-burst')}>
+                        <AudioButton audioId={audioId} letter={defaultLetterCheck("X")} />
+                    </div>
+                    <div className="col" onClick={() => getAudioData('drill-gear')}>
+                         <AudioButton audioId={audioId} letter={defaultLetterCheck("C")} />
+                    </div>
+                    <div className="col-5">
+                         VOLUME CONTROL
+                    </div> 
+                 </div> 
+             </div>
+        </div>
 
      );
 }
