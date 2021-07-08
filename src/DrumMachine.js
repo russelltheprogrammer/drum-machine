@@ -15,21 +15,15 @@ const DrumMachine = () => {
     const [power, setPower] = useState(true);
 
 
-const getData = new Promise((resolve, reject) => {
-       resolve({
-           
-       })
-})
+    // const handleClick = (audioIdWanted) => {
+       
+    //     return new Promise((resolve, reject) => {
+    //         getAudioData(audioIdWanted);
+    //         resolve(letter);
+    //         reject("error with this promise");
+    //     });
+    //     }
 
-
-    const handleClick = (audioIdWanted) => {
-        getAudioData(audioIdWanted)
-        .then(() => {
-            playAudioClip(index)
-        })   
-}
-
-    
     const getAudioData = (audioIdWanted) => {
         for(let i = 0; i < AudioData.length; i++){
             let index = 0;
@@ -45,7 +39,8 @@ const getData = new Promise((resolve, reject) => {
          }
             }
     
-    const playAudioClip = (index) => {
+    const playAudioClip = (letter) => {
+                let currentTime = 0;
                 const sound = document.getElementById(letter);
                 sound.currentTime = 0;
                 sound.play();
@@ -87,7 +82,7 @@ const getData = new Promise((resolve, reject) => {
         <div id="drum-machine">
             <div id="inner-drum-machine-box">
                  <div className="row">
-                    <div className="col" onClick={() => handleClick('crash')}>
+                    <div className="col" onClick={() => getAudioData('crash')}>
                         <AudioButton letter={defaultLetterCheck("Q")} props={passPropsToAudioButton(audioId, url)} />
                     </div> 
                     <div className="col" onClick={() => getAudioData('dumpster-bottle-smash')}>
