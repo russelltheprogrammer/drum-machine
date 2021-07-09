@@ -24,7 +24,10 @@ const DrumMachine = () => {
     //     });
     //     }
 
+
     const getAudioData = (audioIdWanted) => {
+
+        return new Promise((resolve, reject) => {
         for(let i = 0; i < AudioData.length; i++){
             let index = 0;
         if(audioIdWanted === AudioData[i]["id"]) {
@@ -35,17 +38,20 @@ const DrumMachine = () => {
             setUrl(AudioData[index]["url"]);
             setKeyCode(AudioData[index]["keyCode"]);
             setIndex(index);
+            
             }
          }
-            }
+         resolve();
+         reject("error")
+            })
+        }
     
-    const playAudioClip = (letter) => {
-                let currentTime = 0;
-                const sound = document.getElementById(letter);
+    const playAudioClip = (index) => {
+                const sound = document.getElementsByClassName("clip")[index];
                 sound.currentTime = 0;
                 sound.play();
+                
             };
-
 
 
     const defaultLetterCheck = (defaultLetter) => defaultLetter === letter ? letter : defaultLetter;
@@ -57,11 +63,9 @@ const DrumMachine = () => {
         return props
     };
         
-
-
 //     const playAudioClip = (index) => {
 //     const sound = document.getElementsByClassName("clip")[index];
-//     sound.currentTime = 0;
+//    sound.currentTime = 0;
 //     sound.play();
 // }
 
@@ -82,10 +86,10 @@ const DrumMachine = () => {
         <div id="drum-machine">
             <div id="inner-drum-machine-box">
                  <div className="row">
-                    <div className="col" onClick={() => getAudioData('crash')}>
+                    <div className="col" onClick={() => getAudioData('crash').then(() => playAudioClip(index))}>
                         <AudioButton letter={defaultLetterCheck("Q")} props={passPropsToAudioButton(audioId, url)} />
                     </div> 
-                    <div className="col" onClick={() => getAudioData('dumpster-bottle-smash')}>
+                    <div className="col" onClick={() => getAudioData('dumpster-bottle-smash').then(() => playAudioClip(index))}>
                         <AudioButton letter={defaultLetterCheck("W")} props={passPropsToAudioButton(audioId, url)} />
                     </div> 
                     <div className="col" onClick={() => getAudioData('air-woosh-underwater')}>
