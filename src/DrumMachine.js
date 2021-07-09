@@ -46,19 +46,19 @@ const DrumMachine = () => {
             })
         }
     
-    const playAudioClip = (index) => {
-                const sound = document.getElementsByClassName("clip")[index];
+            const playAudioClip = (letter) => {
+                const sound = document.getElementsByClassName("letter");
                 sound.currentTime = 0;
                 sound.play();
-                
             };
 
 
     const defaultLetterCheck = (defaultLetter) => defaultLetter === letter ? letter : defaultLetter;
+
     const passPropsToAudioButton = (audioId, url) => {
         let props = {
-        audioId: audioId, 
-        url: url
+            audioId: audioId, 
+            url: url
         }
         return props
     };
@@ -86,10 +86,10 @@ const DrumMachine = () => {
         <div id="drum-machine">
             <div id="inner-drum-machine-box">
                  <div className="row">
-                    <div className="col" onClick={() => getAudioData('crash').then(() => playAudioClip(index))}>
+                    <div className="col" onClick={() => getAudioData('crash')}>
                         <AudioButton letter={defaultLetterCheck("Q")} props={passPropsToAudioButton(audioId, url)} />
                     </div> 
-                    <div className="col" onClick={() => getAudioData('dumpster-bottle-smash').then(() => playAudioClip(index))}>
+                    <div className="col" onClick={() => getAudioData('dumpster-bottle-smash')}>
                         <AudioButton letter={defaultLetterCheck("W")} props={passPropsToAudioButton(audioId, url)} />
                     </div> 
                     <div className="col" onClick={() => getAudioData('air-woosh-underwater')}>

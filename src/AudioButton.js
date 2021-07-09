@@ -1,8 +1,10 @@
 import React from "react";
 import './index.scss';
 
-const AudioButton = ({ props, letter }) => {
+const AudioButton = ({ letter, props }) => {
 
+  
+    
     return ( 
         <div>
                    <div id={props.audioId} className="drum-pad">
