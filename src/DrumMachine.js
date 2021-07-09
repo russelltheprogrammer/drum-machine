@@ -38,7 +38,6 @@ const DrumMachine = () => {
             setUrl(AudioData[index]["url"]);
             setKeyCode(AudioData[index]["keyCode"]);
             setIndex(index);
-            
             }
          }
          resolve();
@@ -47,7 +46,7 @@ const DrumMachine = () => {
         }
     
             const playAudioClip = (letter) => {
-                const sound = document.getElementsByClassName("letter");
+                const sound = document.getElementById(letter);
                 sound.currentTime = 0;
                 sound.play();
             };
@@ -86,7 +85,7 @@ const DrumMachine = () => {
         <div id="drum-machine">
             <div id="inner-drum-machine-box">
                  <div className="row">
-                    <div className="col" onClick={() => getAudioData('crash')}>
+                    <div className="col" onClick={() => getAudioData('crash').then(() => playAudioClip(letter))}>
                         <AudioButton letter={defaultLetterCheck("Q")} props={passPropsToAudioButton(audioId, url)} />
                     </div> 
                     <div className="col" onClick={() => getAudioData('dumpster-bottle-smash')}>
