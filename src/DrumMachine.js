@@ -1,5 +1,5 @@
 import './index.scss'
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import AudioData from './AudioData';
 import AudioButton from './AudioButton';
 import Display from './Display';
@@ -15,58 +15,46 @@ const DrumMachine = () => {
     const [power, setPower] = useState(true);
 
 
-    // const handleClick = (audioIdWanted) => {
-       
-    //     return new Promise((resolve, reject) => {
-    //         getAudioData(audioIdWanted);
-    //         resolve(letter);
-    //         reject("error with this promise");
-    //     });
-    //     }
+    const audioElement = useRef();
 
 
     const getAudioData = (audioIdWanted) => {
 
         return new Promise((resolve, reject) => {
-        for(let i = 0; i < AudioData.length; i++){
-            let index = 0;
-        if(audioIdWanted === AudioData[i]["id"]) {
-            index = AudioData.indexOf(AudioData[i]);
-            setDisplay(AudioData[index]["id"]);
-            setAudioId(AudioData[index]["id"]);
-            setLetter(AudioData[index]["keyTrigger"]);
-            setUrl(AudioData[index]["url"]);
-            setKeyCode(AudioData[index]["keyCode"]);
-            setIndex(index);
+            for(let i = 0; i < AudioData.length; i++){
+                let index = 0;
+            if(audioIdWanted === AudioData[i]["id"]) {
+                index = AudioData.indexOf(AudioData[i]);
+                setDisplay(AudioData[index]["id"]);
+                setAudioId(AudioData[index]["id"]);
+                setLetter(AudioData[index]["keyTrigger"]);
+                setUrl(AudioData[index]["url"]);
+                setKeyCode(AudioData[index]["keyCode"]);
+                setIndex(index);
             }
-         }
-         resolve();
-         reject("error")
-            })
-        }
+            }
+                resolve();
+                reject("error")
+        })
+    }
     
-            const playAudioClip = (letter) => {
-                const sound = document.getElementById(letter);
-                sound.currentTime = 0;
-                sound.play();
-            };
+    const playAudioClip = () => {
+        const sound = audioElement.current;
+        sound.currentTime = 0;
+        sound.play();
+    };
 
 
     const defaultLetterCheck = (defaultLetter) => defaultLetter === letter ? letter : defaultLetter;
 
     const passPropsToAudioButton = (audioId, url) => {
         let props = {
-            audioId: audioId, 
-            url: url
+        audioId: audioId, 
+        url: url
         }
         return props
     };
         
-//     const playAudioClip = (index) => {
-//     const sound = document.getElementsByClassName("clip")[index];
-//    sound.currentTime = 0;
-//     sound.play();
-// }
 
 // const keyClick = (e) => {
 //     if(e.keyCode === keyCode){
@@ -85,42 +73,42 @@ const DrumMachine = () => {
         <div id="drum-machine">
             <div id="inner-drum-machine-box">
                  <div className="row">
-                    <div className="col" onClick={() => getAudioData('crash').then(() => playAudioClip(letter))}>
-                        <AudioButton letter={defaultLetterCheck("Q")} props={passPropsToAudioButton(audioId, url)} />
+                    <div className="col" onClick={() => getAudioData('crash').then(() => playAudioClip())}>
+                        <AudioButton letter={defaultLetterCheck("Q")} props={passPropsToAudioButton(audioId, url)} audioElement={audioElement} />
                     </div> 
-                    <div className="col" onClick={() => getAudioData('dumpster-bottle-smash')}>
-                        <AudioButton letter={defaultLetterCheck("W")} props={passPropsToAudioButton(audioId, url)} />
+                    <div className="col" onClick={() => getAudioData('dumpster-bottle-smash').then(() => playAudioClip())}>
+                        <AudioButton letter={defaultLetterCheck("W")} props={passPropsToAudioButton(audioId, url)} audioElement={audioElement} />
                     </div> 
-                    <div className="col" onClick={() => getAudioData('air-woosh-underwater')}>
-                         <AudioButton letter={defaultLetterCheck("E")} props={passPropsToAudioButton(audioId, url)} />
+                    <div className="col" onClick={() => getAudioData('air-woosh-underwater').then(() => playAudioClip())}>
+                         <AudioButton letter={defaultLetterCheck("E")} props={passPropsToAudioButton(audioId, url)} audioElement={audioElement} />
                     </div> 
                     <div className="col-5">
                          POWER BUTTON
                     </div> 
                  </div> 
                  <div className="row">
-                    <div className="col" onClick={() => getAudioData('metal-bat-hits-baseball')}>
-                        <AudioButton letter={defaultLetterCheck("A")} props={passPropsToAudioButton(audioId, url)} />
+                    <div className="col" onClick={() => getAudioData('metal-bat-hits-baseball').then(() => playAudioClip())}>
+                        <AudioButton letter={defaultLetterCheck("A")} props={passPropsToAudioButton(audioId, url)} audioElement={audioElement} />
                      </div> 
-                     <div className="col" onClick={() => getAudioData('wood-rattle')}>
-                        <AudioButton letter={defaultLetterCheck("S")} props={passPropsToAudioButton(audioId, url)} />
+                     <div className="col" onClick={() => getAudioData('wood-rattle').then(() => playAudioClip())}>
+                        <AudioButton letter={defaultLetterCheck("S")} props={passPropsToAudioButton(audioId, url)} audioElement={audioElement} />
                     </div>
-                    <div className="col" onClick={() => getAudioData('helicopter-by')}>
-                         <AudioButton letter={defaultLetterCheck("D")} props={passPropsToAudioButton(audioId, url)} />
+                    <div className="col" onClick={() => getAudioData('helicopter-by').then(() => playAudioClip())}>
+                         <AudioButton letter={defaultLetterCheck("D")} props={passPropsToAudioButton(audioId, url)} audioElement={audioElement} />
                     </div>
                     <div className="col-5">
                          <Display display ={display}/>
                     </div>
                 </div>
                     <div className="row">
-                    <div className="col" onClick={() => getAudioData('boing')}>
-                        <AudioButton letter={defaultLetterCheck("Z")} props={passPropsToAudioButton(audioId, url)} />
+                    <div className="col" onClick={() => getAudioData('boing').then(() => playAudioClip())}>
+                        <AudioButton letter={defaultLetterCheck("Z")} props={passPropsToAudioButton(audioId, url)} audioElement={audioElement} />
                      </div> 
-                     <div className="col" onClick={() => getAudioData('emergency-siren-short-burst')}>
-                        <AudioButton letter={defaultLetterCheck("X")} props={passPropsToAudioButton(audioId, url)} />
+                     <div className="col" onClick={() => getAudioData('emergency-siren-short-burst').then(() => playAudioClip())}>
+                        <AudioButton letter={defaultLetterCheck("X")} props={passPropsToAudioButton(audioId, url)} audioElement={audioElement} />
                     </div>
-                    <div className="col" onClick={() => getAudioData('drill-gear')}>
-                         <AudioButton letter={defaultLetterCheck("C")} props={passPropsToAudioButton(audioId, url)} />
+                    <div className="col" onClick={() => getAudioData('drill-gear').then(() => playAudioClip())}>
+                         <AudioButton letter={defaultLetterCheck("C")} props={passPropsToAudioButton(audioId, url)} audioElement={audioElement} />
                     </div>
                     <div className="col-5">
                          VOLUME CONTROL

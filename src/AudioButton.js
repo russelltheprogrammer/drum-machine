@@ -1,13 +1,13 @@
 import React from "react";
 import './index.scss';
 
-const AudioButton = ({ letter, props }) => {
+const AudioButton = ({ letter, props, audioElement }) => {
 
     return ( 
         <div>
             <div id={props.audioId} className="drum-pad">
                 <span>{letter}</span>
-                <audio id={letter} className="clip" src={props.url} preload="preload"></audio>
+                <audio ref={audioElement} id={letter} className="clip" src={props.url} preload="preload"></audio>
             </div> 
         </div>
      );
