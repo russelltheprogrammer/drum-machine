@@ -10,7 +10,6 @@ const DrumMachine = () => {
     const [audioId, setAudioId] = useState(null);
     const [letter, setLetter] = useState(null);
     const [url, setUrl] = useState(null);
-    const [index, setIndex] = useState(null);
     const [keyCode, setKeyCode] = useState(null);
     const [power, setPower] = useState(true);
 
@@ -30,7 +29,6 @@ const DrumMachine = () => {
                 setLetter(AudioData[index]["keyTrigger"]);
                 setUrl(AudioData[index]["url"]);
                 setKeyCode(AudioData[index]["keyCode"]);
-                setIndex(index);
             }
             }
                 resolve();
@@ -56,18 +54,21 @@ const DrumMachine = () => {
     };
         
 
-// const keyClick = (e) => {
-//     if(e.keyCode === keyCode){
-//         playAudioClip();
-//     }
-// }
+    // brainstorming ideas - if event click === keyCode in dataBase then play sound associated in database with
+    // that keycode and update display with audioId in database. No state needed for keyCode, need to make algorithm
+    // more advnaced for current keyClick function, need to edit playAudioClip function?
+    const keyClick = (e) => {
+        if(e.keyCode === keyCode){
+        playAudioClip();
+        }
+    }
 
-// useEffect(() => {
-//     document.addEventListener('keydown', keyClick)
-//     return () => {
-//         document.removeEventListener('keydown', keyClick)
-//     }
-// })
+    useEffect(() => {
+        document.addEventListener('keydown', keyClick)
+        return () => {
+        document.removeEventListener('keydown', keyClick)
+        }
+    })
 
     return ( 
         <div id="drum-machine">
@@ -107,7 +108,7 @@ const DrumMachine = () => {
                      <div className="col" onClick={() => getAudioData('emergency-siren-short-burst').then(() => playAudioClip())}>
                         <AudioButton letter={defaultLetterCheck("X")} props={passPropsToAudioButton(audioId, url)} audioElement={audioElement} />
                     </div>
-                    <div className="col" onClick={() => getAudioData('drill-gear').then(() => playAudioClip())}>
+                    <div className="col" onClick={() => getAudioData('swoosh').then(() => playAudioClip())}>
                          <AudioButton letter={defaultLetterCheck("C")} props={passPropsToAudioButton(audioId, url)} audioElement={audioElement} />
                     </div>
                     <div className="col-5">

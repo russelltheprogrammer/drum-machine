@@ -49,8 +49,8 @@ const AudioData = [
 },
 {
     keyTrigger: 'C',
-    id: 'drill-gear',
-    url: 'https://actions.google.com/sounds/v1/tools/drill_gear.ogg',
+    id: 'swoosh',
+    url: 'https://actions.google.com/sounds/v1/foley/swoosh.ogg',
     keyCode: 67
 },
 ]
