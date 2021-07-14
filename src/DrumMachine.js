@@ -76,12 +76,16 @@ const DrumMachine = () => {
         }
     })
 
+    //extra div for the "drum-pad" class is unnecessary but to pass the specific tests for the FCC project it was needed
+
     return ( 
         <div id="drum-machine">
             <div id="inner-drum-machine-box">
                  <div className="row">
-                    <div className="col" onClick={() => getAudioData('crash').then(() => playAudioClip())}>
+                    <div className="col">
+                        <div classNames="drum-pad" onClick={() => getAudioData('crash').then(() => playAudioClip())}>
                         <AudioButton letter={defaultLetterCheck("Q")} props={passPropsToAudioButton(audioId, url)} audioElement={audioElement} />
+                        </div>
                     </div> 
                     <div className="col" onClick={() => getAudioData('dumpster-bottle-smash').then(() => playAudioClip())}>
                         <AudioButton letter={defaultLetterCheck("W")} props={passPropsToAudioButton(audioId, url)} audioElement={audioElement} />
