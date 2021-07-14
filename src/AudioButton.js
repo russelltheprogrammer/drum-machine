@@ -7,7 +7,7 @@ const AudioButton = ({ letter, props, audioElement }) => {
         <div>
             <div id={props.audioId} className="drum-pad">
                 <span>{letter}</span>
-                <audio ref={audioElement} id={letter} className="clip" src={props.url} preload="preload"></audio>
+                <audio ref={audioElement} id={letter} className="clip" src={props.url} preload="none"></audio>
             </div> 
         </div>
      );

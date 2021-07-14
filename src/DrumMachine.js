@@ -22,17 +22,16 @@ const DrumMachine = () => {
         return new Promise((resolve, reject) => {
             for(let i = 0; i < AudioData.length; i++){
                 let index = 0;
-            if(audioIdWanted === AudioData[i]["id"]) {
-                index = AudioData.indexOf(AudioData[i]);
-                setDisplay(AudioData[index]["id"]);
-                setAudioId(AudioData[index]["id"]);
-                setLetter(AudioData[index]["keyTrigger"]);
-                setUrl(AudioData[index]["url"]);
-                setKeyCode(AudioData[index]["keyCode"]);
+                    if(audioIdWanted === AudioData[i]["id"]) {
+                        index = AudioData.indexOf(AudioData[i]);
+                        setDisplay(AudioData[index]["id"]);
+                        setAudioId(AudioData[index]["id"]);
+                        setLetter(AudioData[index]["keyTrigger"]);
+                        setUrl(AudioData[index]["url"]);
+                    }
             }
-            }
-                resolve();
-                reject("error")
+        resolve();
+        reject("error")
         })
     }
     
@@ -54,13 +53,19 @@ const DrumMachine = () => {
     };
         
 
-    // brainstorming ideas - if event click === keyCode in dataBase then play sound associated in database with
-    // that keycode and update display with audioId in database. No state needed for keyCode, need to make algorithm
-    // more advnaced for current keyClick function, need to edit playAudioClip function?
     const keyClick = (e) => {
-        if(e.keyCode === keyCode){
-        playAudioClip();
-        }
+ 
+       
+            for(let i = 0; i < AudioData.length; i++){
+                let index = 0;
+                    if(e.keyCode === AudioData[i]["keyCode"]){
+                        index = AudioData.indexOf(AudioData[i]);
+                        getAudioData(AudioData[index]["id"]);
+                        playAudioClip();
+                    }
+            }
+
+   
     }
 
     useEffect(() => {
