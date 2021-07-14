@@ -10,6 +10,7 @@ const DrumMachine = () => {
     const [audioId, setAudioId] = useState(null);
     const [letter, setLetter] = useState(null);
     const [url, setUrl] = useState(null);
+    const [index, setIndex] = useState(0)
     const [keyCode, setKeyCode] = useState(null);
     const [power, setPower] = useState(true);
 
@@ -28,6 +29,7 @@ const DrumMachine = () => {
                         setAudioId(AudioData[index]["id"]);
                         setLetter(AudioData[index]["keyTrigger"]);
                         setUrl(AudioData[index]["url"]);
+                        setIndex(index);
                     }
             }
         resolve();
@@ -37,8 +39,11 @@ const DrumMachine = () => {
     
     const playAudioClip = () => {
         const sound = audioElement.current;
+        // const sound = document.getElementsByClassName("clip")[index];
         sound.currentTime = 0;
-        sound.play();
+        setTimeout(() => {
+        sound.play()
+        }, 150);
     };
 
 
@@ -54,9 +59,7 @@ const DrumMachine = () => {
         
 
     const keyClick = (e) => {
- 
-       
-            for(let i = 0; i < AudioData.length; i++){
+            for(let i = 0; i < AudioData.length; i++) {
                 let index = 0;
                     if(e.keyCode === AudioData[i]["keyCode"]){
                         index = AudioData.indexOf(AudioData[i]);
@@ -64,8 +67,6 @@ const DrumMachine = () => {
                         playAudioClip();
                     }
             }
-
-   
     }
 
     useEffect(() => {
