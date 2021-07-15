@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 
+@mixin change-color($val) {
+    @if $val == off {
+        color: black;
+    }
+    @else {
+        color: blue;
+    }
+}
+
 #app {
     text-align: center;
 }
@@ -52,6 +61,34 @@ padding: 25px;
     border-color: purple;
     border-width: 3px;
     padding: 5.5px;
+}
+
+.power-button {
+    font-weight: bolder;
+    font-size: 23px;
+    background-color: rgb(185, 176, 176);
+    margin-left: 115px;
+    margin-right: 115px;
+    margin-top: 25px;
+    border-style: solid;
+    border-color: black;
+    border-width: 5px;
+    padding: 10px;
+    transition: ease-out 0.2s;
+    user-select: none;
+}
+
+.power-button:hover {
+    background-color: yellow;
+    cursor: pointer;
+}
+
+#power-button-off {
+@include change-color(off);
+}
+
+#power-button-on {
+    @include change-color(on);
 }
 
 .col {

@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import AudioData from './AudioData';
 import AudioButton from './AudioButton';
 import Display from './Display';
+import PowerButton from './PowerButton';
 
 const DrumMachine = () => {
 
@@ -38,11 +39,13 @@ const DrumMachine = () => {
     }
     
     const playAudioClip = () => {
-        const sound = audioElement.current;
-        sound.currentTime = 0;
-        setTimeout(() => {
-        sound.play()
-        }, 150);
+        if(power) {
+            const sound = audioElement.current;
+            sound.currentTime = 0;
+            setTimeout(() => {
+                sound.play()
+            }, 150);
+        }
     };
 
 
@@ -68,6 +71,8 @@ const DrumMachine = () => {
             }
     }
 
+    const handlePower = () => !power ? setPower(true) : setPower(false);
+
     useEffect(() => {
         document.addEventListener('keydown', keyClick)
         return () => {
@@ -89,8 +94,8 @@ const DrumMachine = () => {
                     <div className="col" onClick={() => getAudioData('air-woosh-underwater').then(() => playAudioClip())}>
                          <AudioButton letter={defaultLetterCheck("E")} props={passPropsToAudioButton(audioId, url)} audioElement={audioElement} />
                     </div> 
-                    <div className="col-5">
-                         POWER BUTTON
+                    <div className="col-5" onClick={() => handlePower()}>
+                         <PowerButton power={power}/>
                     </div> 
                  </div> 
                  <div className="row">
