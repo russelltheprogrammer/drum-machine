@@ -7,10 +7,10 @@ import Display from './Display';
 const DrumMachine = () => {
 
     const [display, setDisplay] = useState("Play a beat!");
-    const [audioId, setAudioId] = useState(null);
-    const [letter, setLetter] = useState(null);
-    const [url, setUrl] = useState(null);
-    const [index, setIndex] = useState(0)
+    const [audioId, setAudioId] = useState(AudioData[0]["id"]);
+    const [letter, setLetter] = useState(AudioData[0]["keyTrigger"]);
+    const [url, setUrl] = useState(AudioData[0]["url"]);
+    const [index, setIndex] = useState(0);
     const [keyCode, setKeyCode] = useState(null);
     const [power, setPower] = useState(true);
 
@@ -39,7 +39,6 @@ const DrumMachine = () => {
     
     const playAudioClip = () => {
         const sound = audioElement.current;
-        // const sound = document.getElementsByClassName("clip")[index];
         sound.currentTime = 0;
         setTimeout(() => {
         sound.play()
@@ -76,16 +75,13 @@ const DrumMachine = () => {
         }
     })
 
-    //extra div for the "drum-pad" class is unnecessary but to pass the specific tests for the FCC project it was needed
 
     return ( 
         <div id="drum-machine">
             <div id="inner-drum-machine-box">
                  <div className="row">
-                    <div className="col">
-                        <div classNames="drum-pad" onClick={() => getAudioData('crash').then(() => playAudioClip())}>
+                    <div className="col" onClick={() => getAudioData('crash').then(() => playAudioClip())}>
                         <AudioButton letter={defaultLetterCheck("Q")} props={passPropsToAudioButton(audioId, url)} audioElement={audioElement} />
-                        </div>
                     </div> 
                     <div className="col" onClick={() => getAudioData('dumpster-bottle-smash').then(() => playAudioClip())}>
                         <AudioButton letter={defaultLetterCheck("W")} props={passPropsToAudioButton(audioId, url)} audioElement={audioElement} />
@@ -127,16 +123,11 @@ const DrumMachine = () => {
                  </div> 
              </div>
         </div>
-
      );
 }
  
 export default DrumMachine;
 
-//  <div>
-//     <PlayAudio audioId={AudioData[index]["id"]} letter={AudioData[index]["keyTrigger"]} url={AudioData[index]["url"]} 
-//     index={index} keyCode={AudioData[index]["keyCode"]} />
-//     </div> 
 
     // <div>
     // <div id={audioId} className="drum-pad" onClick={playAudioClip}>
