@@ -4,17 +4,21 @@ import AudioData from './AudioData';
 import AudioButton from './AudioButton';
 import Display from './Display';
 import PowerButton from './PowerButton';
+import VolumeControl from './VolumeControl';
 
 const DrumMachine = () => {
 
-    const [display, setDisplay] = useState("Play a beat!");
+    const playABeat = "Play a beat!";
+    const [display, setDisplay] = useState(playABeat);
     const [audioId, setAudioId] = useState(AudioData[0]["id"]);
     const [letter, setLetter] = useState(AudioData[0]["keyTrigger"]);
     const [url, setUrl] = useState(AudioData[0]["url"]);
+    const [power, setPower] = useState(true);
+    const [volumeValue, setVolumeValue ] = useState(0.5);
     const [index, setIndex] = useState(0);
     const [keyCode, setKeyCode] = useState(null);
-    const [power, setPower] = useState(true);
 
+    //delete index and keyCode hooks?
 
     const audioElement = useRef();
 
@@ -41,10 +45,14 @@ const DrumMachine = () => {
     const playAudioClip = () => {
         if(power) {
             const sound = audioElement.current;
+            sound.volume = volumeValue;
             sound.currentTime = 0;
             setTimeout(() => {
                 sound.play()
             }, 150);
+        }
+        else if (!power){
+        setDisplay(playABeat)
         }
     };
 
@@ -72,6 +80,14 @@ const DrumMachine = () => {
     }
 
     const handlePower = () => !power ? setPower(true) : setPower(false);
+
+    const handleVolumeChange = (e) => {
+        if(power) {
+            setVolumeValue(e.target.value);
+            setDisplay("Volume: " + Math.round(e.target.value * 100));
+            setTimeout(() => setDisplay(playABeat), 1000);
+        }
+    }
 
     useEffect(() => {
         document.addEventListener('keydown', keyClick)
@@ -123,7 +139,7 @@ const DrumMachine = () => {
                          <AudioButton letter={defaultLetterCheck("C")} props={passPropsToAudioButton(audioId, url)} audioElement={audioElement} />
                     </div>
                     <div className="col-5">
-                         VOLUME CONTROL
+                        <VolumeControl volumeValue={volumeValue} handleVolumeChange={handleVolumeChange} />
                     </div> 
                  </div> 
              </div>
@@ -132,96 +148,3 @@ const DrumMachine = () => {
 }
  
 export default DrumMachine;
-
-
-    // <div>
-    // <div id={audioId} className="drum-pad" onClick={playAudioClip}>
-    //     <span>{letter}</span>
-    //     <audio id={letter} className="clip" src={url} preload="preload"></audio>
-    // </div>
-    // </div>
-
-    // <div id="drum-machine">
-    //     <div id="inner-drum-machine-box">
-    //         <div className="row">
-    //             <div className="col">
-    //                 {/* Q */}
-    //               <div id={audioId} className="drum-pad" onClick={playAudioClip(0), setDisplay(audioId)}>
-    //                      <span>{letter}</span>
-    //                      <audio id={letter} className="clip" src={url} preload="preload"></audio>
-    //              </div> 
-    //             </div> 
-    //             <div className="col">
-    //                 {/* W */}
-    //                 <div id={audioId} className="drum-pad" onClick={playAudioClip(0), setDisplay(audioId)}>
-    //                      <span>{letter}</span>
-    //                      <audio id={letter} className="clip" src={url} preload="preload"></audio>
-    //              </div> 
-    //             </div>
-    //             <div className="col">
-    //                 {/* E */}
-    //                 <div id={audioId} className="drum-pad" onClick={playAudioClip(0), setDisplay(audioId)}>
-    //                      <span>{letter}</span>
-    //                      <audio id={letter} className="clip" src={url} preload="preload"></audio>
-    //              </div> 
-    //             </div>
-    //             <div className="col-5">
-    //                 TOP ROW OPEN SPACE
-    //             </div>
-    //         </div>
-    //         <div className="row">
-    //             <div className="col">
-    //                 {/* A */}
-    //                 <div id={audioId} className="drum-pad" onClick={playAudioClip(0), setDisplay(audioId)}>
-    //                      <span>{letter}</span>
-    //                      <audio id={letter} className="clip" src={url} preload="preload"></audio>
-    //              </div> 
-    //             </div>
-    //             <div className="col">
-    //                 {/* S */}
-    //                 <div id={audioId} className="drum-pad" onClick={playAudioClip(0), setDisplay(audioId)}>
-    //                      <span>{letter}</span>
-    //                      <audio id={letter} className="clip" src={url} preload="preload"></audio>
-    //              </div> 
-    //             </div>
-    //             <div className="col">
-    //                 {/* D */}
-    //                 <div id={audioId} className="drum-pad" onClick={playAudioClip(0), setDisplay(audioId)}>
-    //                      <span>{letter}</span>
-    //                      <audio id={letter} className="clip" src={url} preload="preload"></audio>
-    //              </div> 
-    //             </div>
-    //             <div id="display" className="col-5">
-    //                 <div id="display-container">
-    //                 {display}
-    //                 </div>
-    //             </div>
-    //         </div>
-    //         <div className="row">
-    //             <div className="col">
-    //                 {/* Z */}
-    //                 <div id={audioId} className="drum-pad" onClick={playAudioClip(0), setDisplay(audioId)}>
-    //                      <span>{letter}</span>
-    //                      <audio id={letter} className="clip" src={url} preload="preload"></audio>
-    //              </div> 
-    //             </div>
-    //             <div className="col">
-    //                 {/* X */}
-    //                 <div id={audioId} className="drum-pad" onClick={playAudioClip(0), setDisplay(audioId)}>
-    //                      <span>{letter}</span>
-    //                      <audio id={letter} className="clip" src={url} preload="preload"></audio>
-    //              </div> 
-    //             </div>
-    //             <div className="col">
-    //                 {/* C */}
-    //                 <div id={audioId} className="drum-pad" onClick={playAudioClip(0), setDisplay(audioId)}>
-    //                      <span>{letter}</span>
-    //                      <audio id={letter} className="clip" src={url} preload="preload"></audio>
-    //              </div> 
-    //             </div>
-    //             <div className="col-5">
-    //             BOTTOM ROW OPEN SPACE
-    //             </div>
-    //         </div>
-    //     </div>
-    //    </div>
