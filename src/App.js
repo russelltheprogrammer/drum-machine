@@ -8,7 +8,7 @@ function App() {
     <div id="app">
      <header id="header">Drum Machine</header>
 
-    <DrumMachineFCCTestsPass />
+    <DrumMachine />
 
     <footer className="footer">
         Coded By <a 
