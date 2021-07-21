@@ -3,7 +3,7 @@ import React from 'react';
 import DrumMachine from './DrumMachine';
 import DrumMachineFCCTestsPass from './DrumMachineFCCTestsPass';
 
-function App() {
+const App = () => {
   return (
     <div id="app">
      <header id="header">Drum Machine</header>

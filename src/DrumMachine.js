@@ -1,5 +1,5 @@
 import './index.scss'
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import AudioData from './AudioData';
 import AudioButton from './AudioButton';
 import Display from './Display';
@@ -7,7 +7,8 @@ import PowerButton from './PowerButton';
 import VolumeControl from './VolumeControl';
 
 // From a learning perspective -- My final note on this project is I think it could have been more code efficient if the
-// map function was used to generate the audio buttons. This would have used a lot less lines of code if done correctly.
+// map function was used to generate the drum-pad divs, the letters, and the audio tags. 
+// This would have used a lot less lines of code if done correctly.
 
 
 const DrumMachine = () => {
@@ -15,68 +16,41 @@ const DrumMachine = () => {
     const playABeat = "Play a beat!";
     const powerOffDisplay = "Power is off";
     const [display, setDisplay] = useState(playABeat);
-    const [audioId, setAudioId] = useState(null);
-    const [letter, setLetter] = useState(AudioData[0]["keyTrigger"]);
-    const [url, setUrl] = useState(AudioData[0]["url"]);
     const [power, setPower] = useState(true);
     const [volumeValue, setVolumeValue ] = useState(0.5);
-    const [index, setIndex] = useState(0);
 
-    const audioElement = useRef();
-
-
-    const getAudioData = (audioIdWanted) => {
-
-        return new Promise((resolve, reject) => {
-            for(let i = 0; i < AudioData.length; i++){
-                let index = 0;
-                    if(audioIdWanted === AudioData[i]["id"]) {
-                        index = AudioData.indexOf(AudioData[i]);
-                        setDisplay(AudioData[index]["id"]);
-                        setAudioId(AudioData[index]["id"]);
-                        setLetter(AudioData[index]["keyTrigger"]);
-                        setUrl(AudioData[index]["url"]);
-                        setIndex(index);
-                    }
-            }
-        resolve();
-        reject("error")
-        })
-    }
-    
-    const playAudioClip = () => {
-        if(power && audioId) {
-            const sound = audioElement.current;
-            sound.volume = volumeValue;
+    const playAudioClip = (index) => {
+        if(power) {
+            setDisplay(AudioData[index]["id"]);
+            const sound = document.getElementsByClassName("clip")[index];
             sound.currentTime = 0;
+            sound.volume = volumeValue;
             setTimeout(() => {
                 sound.play()
-            }, 150);
+            }, 100);
         }
         else if (!power){
         setDisplay(powerOffDisplay)
         }
     };
 
-
-    const defaultLetterCheck = (defaultLetter) => defaultLetter === letter ? letter : defaultLetter;
-
-    const passPropsToAudioButton = (audioId, url) => {
-        let props = {
-        audioId: audioId, 
-        url: url
+    const click = (audioId) => {
+        for(let i = 0; i < AudioData.length; i++) {
+            let index = 0;
+                if(audioId === AudioData[i]["id"]){
+                    index = AudioData.indexOf(AudioData[i]);
+                    playAudioClip(index);
+                }
+            }
         }
-        return props
-    };
-        
+    
 
     const keyClick = (e) => {
             for(let i = 0; i < AudioData.length; i++) {
                 let index = 0;
                     if(e.keyCode === AudioData[i]["keyCode"]){
                         index = AudioData.indexOf(AudioData[i]);
-                        getAudioData(AudioData[index]["id"]);
-                        playAudioClip();
+                        playAudioClip(index);
                     }
             }
     }
@@ -96,53 +70,65 @@ const DrumMachine = () => {
         return () => {
         document.removeEventListener('keydown', keyClick)
         }
-    })
+    });
 
 
     return ( 
         <div id="drum-machine">
             <div id="inner-drum-machine-box">
                  <div className="row">
-                     <div className="col">
-                    <div className="drum-pad" id={AudioData[0]["id"]} onClick={() => getAudioData(AudioData[0]["id"]).then(() => playAudioClip())}>
-                    <div>{defaultLetterCheck("Q")}</div>
-                <audio ref={audioElement} id={defaultLetterCheck("Q")} className="clip" src={AudioData[index]["url"]} preload="preload"></audio>
+                    <div className="col">
+                        <div>
+                            <button className="drum-pad" id={AudioData[0]["id"]} onClick={() => click(AudioData[0]["id"])}>
+                                <audio className="clip" id={AudioData[0]["keyTrigger"]} src={AudioData[0]["url"]}>{" "}</audio>
+                                {AudioData[0]["keyTrigger"]}
+                            </button>
+                        </div>  
+                    </div> 
+                    <div className="col">
+                        <div>
+                            <button className="drum-pad" id={AudioData[1]["id"]} onClick={() => click(AudioData[1]["id"])}>
+                                <audio className="clip" id={AudioData[1]["keyTrigger"]} src={AudioData[1]["url"]}>{" "}</audio>
+                                {AudioData[1]["keyTrigger"]}
+                            </button>
                         </div>
                     </div> 
                     <div className="col">
-                    <div className="drum-pad" id={AudioData[1]["id"]} onClick={() => getAudioData(AudioData[1]["id"]).then(() => playAudioClip())}>
-                    <div>{defaultLetterCheck("W")}</div>
-                <audio ref={audioElement} id={defaultLetterCheck("W")} className="clip" src={AudioData[index]["url"]} preload="preload"></audio>
+                        <div>
+                            <button className="drum-pad" id={AudioData[2]["id"]} onClick={() => click(AudioData[2]["id"])}>
+                                <audio className="clip" id={AudioData[2]["keyTrigger"]} src={AudioData[2]["url"]}>{" "}</audio>
+                                {AudioData[2]["keyTrigger"]}
+                            </button>
                         </div>
                     </div> 
-                    <div className="col">
-                    <div className="drum-pad" id={AudioData[2]["id"]} onClick={() => getAudioData(AudioData[2]["id"]).then(() => playAudioClip())}>
-                    <div>{defaultLetterCheck("E")}</div>
-                <audio ref={audioElement} id={defaultLetterCheck("E")} className="clip" src={AudioData[index]["url"]} preload="preload"></audio>
-                        </div>
-                    </div>
                     <div className="col-5" onClick={() => handlePower()}>
                          <PowerButton power={power}/>
                     </div> 
                  </div> 
                  <div className="row">
-                 <div className="col">
-                    <div className="drum-pad" id={AudioData[3]["id"]} onClick={() => getAudioData(AudioData[3]["id"]).then(() => playAudioClip())}>
-                    <div>{defaultLetterCheck("A")}</div>
-                <audio ref={audioElement} id={defaultLetterCheck("A")} className="clip" src={AudioData[index]["url"]} preload="preload"></audio>
-                     </div> 
+                    <div className="col">
+                        <div>
+                            <button className="drum-pad" id={AudioData[3]["id"]} onClick={() => click(AudioData[3]["id"])}>
+                                <audio className="clip" id={AudioData[3]["keyTrigger"]} src={AudioData[3]["url"]}>{" "}</audio>
+                                {AudioData[3]["keyTrigger"]}
+                            </button>
+                        </div>
                      </div>
                      <div className="col">
-                    <div className="drum-pad" id={AudioData[4]["id"]} onClick={() => getAudioData(AudioData[4]["id"]).then(() => playAudioClip())}>
-                    <div>{defaultLetterCheck("S")}</div>
-                <audio ref={audioElement} id={defaultLetterCheck("S")} className="clip" src={AudioData[index]["url"]} preload="preload"></audio>
-                    </div>
+                        <div>
+                            <button className="drum-pad" id={AudioData[4]["id"]} onClick={() => click(AudioData[4]["id"])}>
+                                <audio className="clip" id={AudioData[4]["keyTrigger"]} src={AudioData[4]["url"]}>{" "}</audio>
+                                {AudioData[4]["keyTrigger"]}
+                            </button>
+                        </div> 
                     </div>
                     <div className="col">
-                    <div className="drum-pad" id={AudioData[5]["id"]} onClick={() => getAudioData(AudioData[5]["id"]).then(() => playAudioClip())}>
-                    <div>{defaultLetterCheck("D")}</div>
-                <audio ref={audioElement} id={defaultLetterCheck("D")} className="clip" src={AudioData[index]["url"]} preload="preload"></audio>
-                    </div>
+                        <div>
+                            <button className="drum-pad" id={AudioData[5]["id"]} onClick={() => click(AudioData[5]["id"])}>
+                                <audio className="clip" id={AudioData[5]["keyTrigger"]} src={AudioData[5]["url"]}>{" "}</audio>
+                                {AudioData[5]["keyTrigger"]}
+                            </button>
+                        </div>
                     </div>
                     <div className="col-5">
                          <Display display ={display}/>
@@ -150,22 +136,28 @@ const DrumMachine = () => {
                 </div>
                     <div className="row">
                     <div className="col">
-                    <div className="drum-pad" id={AudioData[6]["id"]} onClick={() => getAudioData(AudioData[6]["id"]).then(() => playAudioClip())}>
-                    <div>{defaultLetterCheck("Z")}</div>
-                <audio ref={audioElement} id={defaultLetterCheck("Z")} className="clip" src={AudioData[index]["url"]} preload="preload"></audio>
-                     </div>
+                        <div>
+                            <button className="drum-pad" id={AudioData[6]["id"]} onClick={() => click(AudioData[6]["id"])}>
+                                <audio className="clip" id={AudioData[6]["keyTrigger"]} src={AudioData[6]["url"]}>{" "}</audio>
+                                {AudioData[6]["keyTrigger"]}
+                            </button>
+                        </div>
                      </div> 
                      <div className="col">
-                    <div className="drum-pad" id={AudioData[7]["id"]} onClick={() => getAudioData(AudioData[7]["id"]).then(() => playAudioClip())}>
-                    <div>{defaultLetterCheck("X")}</div>
-                <audio ref={audioElement} id={defaultLetterCheck("X")} className="clip" src={AudioData[index]["url"]} preload="preload"></audio>
-                    </div>
+                        <div>
+                            <button className="drum-pad" id={AudioData[7]["id"]} onClick={() => click(AudioData[7]["id"])}>
+                                <audio className="clip" id={AudioData[7]["keyTrigger"]} src={AudioData[7]["url"]}>{" "}</audio>
+                                {AudioData[7]["keyTrigger"]}
+                            </button>
+                        </div>
                     </div>
                     <div className="col">
-                    <div className="drum-pad" id={AudioData[8]["id"]} onClick={() => getAudioData(AudioData[8]["id"]).then(() => playAudioClip())}>
-                    <div>{defaultLetterCheck("C")}</div>
-                <audio ref={audioElement} id={defaultLetterCheck("C")} className="clip" src={AudioData[index]["url"]} preload="preload"></audio>
-                    </div>
+                        <div>
+                            <button className="drum-pad" id={AudioData[8]["id"]} onClick={() => click(AudioData[8]["id"])}>
+                                <audio className="clip" id={AudioData[8]["keyTrigger"]} src={AudioData[8]["url"]}>{" "}</audio>
+                                {AudioData[8]["keyTrigger"]}
+                            </button>
+                        </div>
                     </div>
                     <div className="col-5">
                         <VolumeControl volumeValue={volumeValue} handleVolumeChange={handleVolumeChange} />
