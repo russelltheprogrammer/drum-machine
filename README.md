@@ -1,4 +1,4 @@
-# Link to Markdown Previewer --> [Drum Machine](http://russelltheprogrammer.github.io/drum-machine/)
+# Link to Drum Machine --> [Drum Machine](http://russelltheprogrammer.github.io/drum-machine/)
 
 Note: This project was done for the FCC curriculum for the Front End Libraries Certificate so sometimes there are more divs than needed to pass the tests.
 
