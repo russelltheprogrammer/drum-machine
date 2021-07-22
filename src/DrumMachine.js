@@ -1,14 +1,14 @@
 import './index.scss'
 import React, { useState, useEffect } from 'react';
 import AudioData from './AudioData';
-import AudioButton from './AudioButton';
 import Display from './Display';
 import PowerButton from './PowerButton';
 import VolumeControl from './VolumeControl';
 
-// From a learning perspective -- My final note on this project is I think it could have been more code efficient if the
-// map function was used to generate the drum-pad divs, the letters, and the audio tags. 
+// From a learning perspective --- My final notes on this project are I think it could have been more code efficient if the
+// map function was used to generate the drum-pad buttons, the audio tags, and the letters. 
 // This would have used a lot less lines of code if done correctly.
+// Responsiveness could have been improved too but that is not the point of this project.
 
 
 const DrumMachine = () => {
@@ -25,9 +25,7 @@ const DrumMachine = () => {
             const sound = document.getElementsByClassName("clip")[index];
             sound.currentTime = 0;
             sound.volume = volumeValue;
-            setTimeout(() => {
-                sound.play()
-            }, 100);
+            sound.play();
         }
         else if (!power){
         setDisplay(powerOffDisplay)
@@ -44,7 +42,6 @@ const DrumMachine = () => {
             }
         }
     
-
     const keyClick = (e) => {
             for(let i = 0; i < AudioData.length; i++) {
                 let index = 0;
@@ -71,7 +68,6 @@ const DrumMachine = () => {
         document.removeEventListener('keydown', keyClick)
         }
     });
-
 
     return ( 
         <div id="drum-machine">
