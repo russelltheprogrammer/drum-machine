@@ -1,75 +1,44 @@
 # Link to Drum Machine --> [Drum Machine](http://russelltheprogrammer.github.io/drum-machine/)
 
-Note: This project was done for the FCC curriculum for the Front End Libraries Certificate so sometimes there is extra code to pass the tests.
+Note: This project was built in progress for the <strong>freeCodeCamp Front End Development Libraries Projects Certificate</strong>. This was for <strong>project #3</strong>.
 
-# Getting Started with Create React App
+# Challenge?
+## To Build a Drum Machine
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## User Stories To Fullfill
 
-## Available Scripts
+- User Story #1: I should be able to see an outer container with a corresponding ```id="drum-machine"``` that contains all other elements.
 
-In the project directory, you can run:
+- User Story #2: Within ```#drum-machine``` I can see an element with a corresponding ```id="display"```.
 
-### `npm start`
+- User Story #3: Within ```#drum-machine``` I can see 9 clickable drum pad elements, each with a class name of ```drum-pad```, a unique id that describes the audio clip the drum pad will be set up to trigger, and an inner text that corresponds to one of the following keys on the keyboard: ```Q```, ```W```, ```E```, ```A```, ```S```, ```D```, ```Z```, ```X```, ```C```. The drum pads MUST be in this order.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- User Story #4: Within each ```.drum-pad```, there should be an HTML5 ```audio``` element which has a ```src``` attribute pointing to an audio clip, a class name of ```clip```, and an id corresponding to the inner text of its parent ```.drum-pad``` (e.g. ```id="Q"```, ```id="W"```, ```id="E"``` etc.).
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- User Story #5: When I click on a ```.drum-pad``` element, the audio clip contained in its child ```audio``` element should be triggered.
 
-### `npm test`
+- User Story #6: When I press the trigger key associated with each ```.drum-pad```, the audio clip contained in its child ```audio``` element should be triggered (e.g. pressing the ```Q``` key should trigger the drum pad which contains the string ```Q```, pressing the ```W``` key should trigger the drum pad which contains the string ```W```, etc.).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- User Story #7: When a ```.drum-pad``` is triggered, a string describing the associated audio clip is displayed as the inner text of the ```#display``` element (each string must be unique).
 
-### `npm run build`
+## What I used to create?
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+I used ```create-react-app```.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Key Concepts Used
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
++ React hooks
++ React components
++ Custom Functions
++ Handle ButtonClick, OnChange, and Other Handle Functions
++ Keyclick events
++ Sass
++ Working with large amounts of State
 
-### `npm run eject`
+## Source Code?
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Check out my source code above.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Feedback?
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
- 
+Let me know! I would love to know what you think.
