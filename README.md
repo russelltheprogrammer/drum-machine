@@ -30,7 +30,7 @@ I used ```create-react-app```.
 + React hooks
 + React components
 + Custom Functions
-+ Handle ButtonClick, OnChange, and Other Handle Functions
++ Handle Click, OnChange, and Other Handle Functions
 + Keyclick events
 + Sass
 + Working with large amounts of State
